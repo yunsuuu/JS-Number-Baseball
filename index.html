@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>숫자야구</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>숫자야구</title>
 </head>
 <body>
-  <!-- <h2>반복문을 활용한 숫자게임</h2> -->
-  <div>* strike : 입력한 4자리 숫자 중 정답과 자릿수가 똑같은 값이 존재한다</div>
-  <div>* ball : 입력한 4자리 숫자 중 자릿수는 다르지만 겹치는 값이 존재한다</div>
-  <form id="form" style="padding-top: 20px;">
-    <input type="number" id="input" required autocomplete="off">
-    <button>확인</button>
-  </form>
-  <div id="logs" style="width: 220px;"></div>
+<!-- <h2>반복문을 활용한 숫자게임</h2> -->
+<div>* STRIKE : 입력한 4자리 숫자 중 정답과 자릿수가 똑같은 값이 존재하는 경우</div>
+<div>* BALL : 입력한 4자리 숫자 중 자릿수는 다르지만 겹치는 값이 존재하는 경우</div>
+<div>* OUT : 0 strike, 0 ball 의 경우</div>
+<form id="form" style="padding-top: 20px;">
+  <input type="number" id="input" required autocomplete="off">
+  <button>확인</button>
+</form>
+<div id="logs" style="width: 220px;"></div>
 
-  <!-- <script src="app.js"></script> -->
-  <script src="app2.js"></script>
+<!-- <script src="app.js"></script> -->
+<script src="app2.js"></script>
 </body>
 </html>

@@ -4,13 +4,13 @@ const $logs = document.querySelector("#logs");
 
 // 1부터 9까지 담는 배열
 const numbers = [];
-for(let i = 0; i < 9; i++){
+  for(let i = 0; i < 9; i++){
   numbers.push(i + 1);
 }
 
 // 4자리 정수인 정답을 담는 배열
 const answer = [];
-for(let i = 0; i < 4; i++){
+  for(let i = 0; i < 4; i++){
   const index = Math.floor(Math.random() * (numbers.length - 1));
   answer.push(numbers[index]);
   numbers.splice(index, 1);
@@ -18,7 +18,7 @@ for(let i = 0; i < 4; i++){
 
 // 사용자가 입력한 값을 담는 배열
 const tries = [];
-const checkInput = (input) => {
+  const checkInput = (input) => {
   if(input.length !== 4){
     return alert("4자리 숫자를 입력해 주세요!");
   }
@@ -30,6 +30,13 @@ const checkInput = (input) => {
   } 
   return true;
 };
+
+const outMessage = () => {
+  $logs.append(document.createElement("hr"), `패배! 정답은 ${answer.join("")}`);
+}
+
+// 0 strike, 0 ball 의 횟수를 담는 배열
+let out = [];
 
 const playGame = (e) => {
   e.preventDefault();
@@ -45,7 +52,7 @@ const playGame = (e) => {
     return;
   }
   if(tries.length >= 9){ // 10번 이상 시도했을 때
-    $logs.append(document.createElement("br"), document.createElement("hr"), `땡! 정답은 ${answer.join("")}`);
+    outMessage();
     return;
   }
   let strike = 0;
@@ -63,7 +70,16 @@ const playGame = (e) => {
       }
     }
   }
-  $logs.append(document.createElement("hr"), `${value} : ${strike} strike / ${ball} ball`, document.createElement("br"));
+  if(strike === 0 && ball === 0){
+    out++;
+    $logs.append(document.createElement("hr"), `${value} : ${out} OUT!`, document.createElement("br"));
+  } else {
+    $logs.append(document.createElement("hr"), `${value} : ${strike} strike / ${ball} ball`, document.createElement("br"));
+  }
+  if(out === 3){
+    outMessage();
+    return;
+  }
   tries.push(value);
 };
 

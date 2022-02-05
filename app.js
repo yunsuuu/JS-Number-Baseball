@@ -40,13 +40,21 @@ const checkInput = (input) => { // 사용자가 입력한 값을 검사하는 �
   if(tries.includes(input)){ // 이미 입력한 값일 경우
     return alert("이미 시도한 값입니다!");
   }
-  return true; // true 이면 if문 안에 넣을 수 있음
+  return true; // true 이면 if문 안에 함수를 넣을 수 있음
 };
+
+// 패배했을 때 출력되는 메시지(중복제거를 위해 함수로 빼줌)
+const outMessage = () => {
+  $logs.append(document.createElement("hr"), `패배! 정답은 ${answer.join("")}`);
+};
+
+// out 횟수를 세는 변수
+let out = 0;
 
 $form.addEventListener("submit", (e) => {
   e.preventDefault();
   const value = $input.value;
-  console.log(answer);
+  console.log(answer.join(""));
   $input.value = "";
   if(!checkInput(value)){
   // 입력값 문제있음
@@ -60,10 +68,9 @@ $form.addEventListener("submit", (e) => {
     return;
   }
   if(tries.length >= 9){ // 10번째 숫자 입력 후 submit 하면 결과 출력
-    $logs.append(document.createElement("br"), document.createElement("hr"), `땡! 정답은 ${answer.join("")}`);
+    outMessage();
     return;
   }
-  // 몇 스트라이크, 몇 볼인지 검사
   let strike = 0;
   let ball = 0;
   // answer = 3146, value = 3275
@@ -79,8 +86,17 @@ $form.addEventListener("submit", (e) => {
       }
     }
   }
-  $logs.append(document.createElement("hr"), `${value} : ${strike} strike / ${ball} ball`, document.createElement("br"));
-  tries.push(value); // 사용자가 입력한 값이 배열로 들어감
+  if(strike === 0 && ball === 0){
+    out++; // 횟수를 셀 때 변수를 0으로 두고, ++ 해주면 됨
+    $logs.append(document.createElement("hr"), `${value}: ${out} OUT!`, document.createElement("br"));
+  } else {
+    $logs.append(document.createElement("hr"), `${value} : ${strike} strike / ${ball} ball`, document.createElement("br")); 
+  }
+  if(out === 3){
+    outMessage();
+    return;
+  }
+  tries.push(value);
 });
 
 // while문
