@@ -114,3 +114,19 @@ $form.addEventListener("submit", (e) => {
 //     }
 //   }
 // }
+
+// forEach
+// const answer = [3, 1, 4, 6];
+// const value = '3124';
+// let strike = 0;
+// let ball = 0;
+// answer.forEach((element, i) => {
+//   const index = value.indexOf(element);
+//   if(index > -1){
+//     if(index === i){
+//       strike += 1;
+//     } else {
+//       ball += 1;
+//     }
+//   }
+// })

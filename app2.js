@@ -84,4 +84,3 @@ const playGame = (e) => {
 };
 
 $form.addEventListener("submit", playGame);
-
